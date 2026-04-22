@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Prishi ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f7f9fc;
+            --main-gradient: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 55%, #fedfe1 100%);
+            --text-color: #4a4e69;
+            --accent-color: #ff4d6d;
+            --shadow: 9px 9px 16px rgba(163, 177, 198, 0.6), -9px -9px 16px rgba(255, 255, 255, 0.5);
+            --inner-shadow: inset 3px 3px 7px rgba(163, 177, 198, 0.3), inset -3px -3px 7px rgba(255, 255, 255, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: var(--text-color);
+        }
+
+        /* --- ENTRANCE INTERFACE (SCREEN 1) --- */
+        #entrance {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--main-gradient);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1.2s ease, transform 1s ease-in-out;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #entrance h1 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            font-size: 3rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInDown 1.5s forwards 0.5s;
+        }
+
+        /* The Neumorphic Entrance Button */
+        .neumorphic-btn {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #fff0f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: pulse 2s infinite, fadeInUp 1.5s forwards 1s;
+            opacity: 0;
+        }
+
+        .neumorphic-btn:hover {
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.6), -4px -4px 8px rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .neumorphic-btn:active {
+            box-shadow: var(--inner-shadow);
+        }
+
+        /* Background glow effect for entrance */
+        .glow-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            filter: blur(20px);
+            z-index: -1;
+            animation: glow 6s infinite alternate;
+        }
+
+        /* --- MAIN CONTENT (SCREEN 2) --- */
+        #main-content {
+            display: none; /* Hidden at start */
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+            animation: rotateGlow 10s linear infinite;
+        }
+
+        .card-content {
+            position: relative; /* Above the inner glow */
+            z-index: 1;
+        }
+
+        .heart-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: heartBeat 1.5s infinite ease-in-out;
+        }
+
+        .glass-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #ff4d6d;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .glass-card p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        /* Final Action Button */
+        .primary-btn {
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .primary-btn:hover {
+            background: #ff758f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        /* Heart Particles Container */
+        #particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.7);
+            font-size: 14px;
+            animation: particleAnimation linear forwards;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes glow {
+            0% { transform: scale(1) translate(-10px, -10px); }
+            100% { transform: scale(1.3) translate(10px, 10px); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.6); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 77, 109, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+        }
+
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes particleAnimation {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="entrance">
+        <div class="glow-circle" style="width:300px; height:300px; top:10%; left:15%;"></div>
+        <div class="glow-circle" style="width:200px; height:200px; bottom:15%; right:20%;"></div>
+        
+        <h1 id="entrance-title">Hey Prishi...</h1>
+        <button class="neumorphic-btn" onclick="startApp(this)" title="Open with Love">
+            <span>❤️</span>
+        </button>
+        <p style="color:white; margin-top:20px; font-weight:300; opacity:0; animation:fadeInUp 1s forwards 1.2s">Open this</p>
+    </div>
+
+    <div id="main-content">
+        <div class="glass-card">
+            <div id="particle-container"></div>
+            <div class="card-content">
+                <div class="heart-icon">💝</div>
+                <h2>I'm really sorry.</h2>
+                <p>
+                    Prishi, I hate it when you're upset. I've spent time building this just for you, hoping it can convey what words might not. I know I was wrong. I'm sorry for hurting you. Can you forgive me, please? Let's fix this.
+                </p>
+                <button class="primary-btn" onclick="forgive(this)">I Forgive You</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="song.mpeg" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function startApp(btnElement) {
+            // 1. Play Music Immediately
+            const audio = document.getElementById('bgMusic');
+            audio.play().catch(e => console.log("Audio play blocked. Need user interaction first."));
+
+            // 2. Create heart explosion from the button location
+            createExplosion(btnElement);
+
+            // 3. Smooth transition to main content
+            const entrance = document.getElementById('entrance');
+            entrance.style.opacity = '0';
+            entrance.style.transform = 'translateY(-20px)';
+            
+            setTimeout(() => {
+                entrance.style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                // Trigger faint hearts in background periodically
+                setInterval(spawnParticle, 1000);
+            }, 1200); // Matches the transition duration
+        }
+
+        // --- Particle System Functions ---
+        const particleContainer = document.getElementById('particle-container');
+
+        function createExplosion(target) {
+            const rect = target.getBoundingClientRect();
+            // Explosion center is button center
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 20; i++) {
+                spawnParticle({explosion: true, x: x, y: y});
+            }
+        }
+
+        function spawnParticle(options = {}) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.innerHTML = '❤️'; // Or use ✨ or other symbols
+            
+            // Randomize size, rotation, speed
+            const size = (Math.random() * 10 + 10) + 'px';
+            particle.style.fontSize = size;
+            particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+            if (options.explosion) {
+                // If explosion, start particles from button location
+                particle.style.left = options.x + 'px';
+                particle.style.top = options.y + 'px';
+                // Spread directions
+                particle.style.animationName = 'explosionAnimation'; 
+            } else {
+                // Otherwise, random background position inside main card
+                particle.style.left = (Math.random() * 100) + '%';
+                particle.style.bottom = '-10%'; // Start below view
+                particle.style.animationName = 'particleAnimation';
+            }
+
+            particleContainer.appendChild(particle);
+
+            // Remove particle after animation ends
+            setTimeout(() => {
+                particle.remove();
+            }, 4000);
+        }
+
+        // --- Explosion Animation (only used during click) ---
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes explosionAnimation {
+                0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                100% { transform: translate(${(Math.random()-0.5)*300}px, ${(Math.random()-0.5)*300}px) scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // --- Final Forgiveness Function ---
+        function forgive(btn) {
+            btn.innerHTML = "THANK YOU, PRISHI! ❤️";
+            btn.style.background = "#2ecc71"; // Change to success green
+            btn.style.width = "auto";
+            document.querySelector('.heart-icon').innerHTML = "🥰";
+            
+            // Generate many hearts quickly
+            let explosionCounter = 0;
+            const intenseExplosion = setInterval(() => {
+                spawnParticle({explosion: false});
+                explosionCounter++;
+                if (explosionCounter > 30) clearInterval(intenseExplosion);
+            }, 80);
+        }
+
+    </script>
+</body>
+</html>
